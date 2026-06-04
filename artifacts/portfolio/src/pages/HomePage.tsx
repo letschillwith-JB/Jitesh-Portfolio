@@ -2,6 +2,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
 import { SocialProofStrip } from "@/components/home/SocialProofStrip";
+import { ProfileBanner } from "@/components/home/ProfileBanner";
 import { WhatIBuild } from "@/components/home/WhatIBuild";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { Process } from "@/components/home/Process";
@@ -15,6 +16,7 @@ export function HomePage() {
       <main>
         <Hero />
         <SocialProofStrip />
+        <ProfileBanner />
         <WhatIBuild />
         <FeaturedProjects />
         <Process />
