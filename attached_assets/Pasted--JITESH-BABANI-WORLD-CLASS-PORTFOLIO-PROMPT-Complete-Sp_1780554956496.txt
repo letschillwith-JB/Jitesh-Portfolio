@@ -1,0 +1,1000 @@
+# JITESH BABANI — WORLD-CLASS PORTFOLIO PROMPT
+### Complete Specification for a Business-Converting Developer Portfolio
+
+---
+
+## ROLE & CONTEXT
+
+You are an elite senior frontend engineer, SaaS product designer, and conversion copywriter combined.
+
+Build a **production-grade portfolio website** for **Jitesh Babani**, a Full Stack Developer based in Bhopal, India.
+
+This is **NOT** a CV-style portfolio to impress recruiters.
+This is a **client acquisition machine** designed to convert business owners, startup founders, and local entrepreneurs into leads. Every pixel, every word, every animation must answer the visitor's unspoken question: *"Can this person understand my business and build software that actually works?"*
+
+The answer, delivered visually and through writing, must be an unambiguous **yes**.
+
+---
+
+## TECH STACK (NON-NEGOTIABLE)
+
+```
+Framework:      Next.js 15+ (App Router)
+Language:       TypeScript (strict mode)
+Styling:        Tailwind CSS v4
+Animation:      Framer Motion
+Fonts:          next/font (Google Fonts)
+Icons:          Lucide React
+SEO:            Next.js Metadata API (generateMetadata)
+Deployment:     Vercel-ready
+Code Quality:   ESLint + Prettier configured
+Structure:      Monorepo-friendly, scalable component architecture
+```
+
+**Project Data Storage:** All project content in `/src/data/projects.ts` — a typed array so case studies can be edited without touching component code.
+
+---
+
+## DESIGN DIRECTION
+
+### Aesthetic: "Focused Craft"
+
+Think: Linear.app meets a boutique software consultancy.
+Dark-first. Not gamer-dark — *architect-dark*. The darkness says *precision*, not *attitude*.
+
+| Property | Direction |
+|---|---|
+| **Theme** | Dark base (#0A0A0F), not pure black |
+| **Accent** | Electric indigo (#6366F1) with a subtle teal secondary (#14B8A6) |
+| **Surface** | Layered dark cards (#111118, #16161F) with 1px subtle borders |
+| **Typography — Display** | `Syne` (Google Fonts) — geometric, confident, modern |
+| **Typography — Body** | `DM Sans` — clean, readable, not generic |
+| **Typography — Mono** | `JetBrains Mono` — for code snippets and tech labels |
+| **Radius** | 12px standard, 8px small, 20px large cards |
+| **Motion** | Framer Motion — ease-out, 0.4–0.6s duration. Never bouncy. |
+| **Grid** | max-w-7xl centered, 5% horizontal padding on mobile |
+
+### Glassmorphism: Used Surgingly
+Only on hero floating cards and feature callout boxes. Rule: if removing the glass effect loses nothing, remove it. Use `backdrop-blur-xl bg-white/5 border border-white/10`.
+
+### Gradient Strategy
+- **Hero gradient:** Radial from indigo at 20% opacity, fading to transparent — like a halo, not a rainbow.
+- **Cards:** Subtle `linear-gradient(135deg, #111118, #16161F)` — just enough to feel crafted.
+- **No gradient text** except for the hero headline. One uses of it, maximum.
+
+### What to Avoid
+- Purple-on-purple anything
+- Floating orbs and blobs (amateur)
+- Skill progress bars
+- "I am a passionate developer" copy
+- Technology logo walls
+- Timeline-style "My Journey" sections
+- Any design pattern seen on a Figma community freebie
+
+---
+
+## SITE STRUCTURE
+
+```
+/                   → Home Page
+/projects           → Projects Index
+/projects/[slug]    → Case Study (dynamic)
+/contact            → Contact Page
+
+Optional (Phase 2):
+/about              → Extended About
+```
+
+### Routing Strategy
+All project slugs defined in `/src/data/projects.ts`. Use `generateStaticParams` for static generation at build time. Every page has unique `generateMetadata`.
+
+---
+
+## PAGE-BY-PAGE SPECIFICATION
+
+---
+
+### 1. HOME PAGE (`/`)
+
+---
+
+#### 1.1 — NAVIGATION
+
+Fixed top nav, blurs background on scroll (`backdrop-blur-md bg-[#0A0A0F]/80`).
+
+**Left:** `JB` monogram in an outlined box (indigo border) + text "Jitesh Babani" in Syne, small.
+
+**Center (desktop):** `Home` · `Projects` · `Contact`
+
+**Right:**
+- "Available for Projects" pill — pulsing green dot + text, links to `/contact`
+- Mobile: hamburger → full-screen overlay menu with large nav links
+
+---
+
+#### 1.2 — HERO SECTION
+
+Full viewport height. Two-column layout on desktop, stacked on mobile.
+
+**Left column (60%):**
+
+```
+EYEBROW LABEL (mono font, indigo, small caps):
+"Full Stack Developer · Bhopal, India"
+
+HEADLINE (Syne, 72px desktop / 48px mobile):
+"Software That Moves
+Your Business Forward."
+
+SUBHEADLINE (DM Sans, 20px, muted):
+"I build booking platforms, business dashboards,
+analytics systems, and workflow automation tools
+that solve real operational problems."
+
+PRIMARY CTA BUTTON:
+"View My Work" → /projects
+[filled, indigo background]
+
+SECONDARY CTA BUTTON:
+"Get in Touch" → /contact
+[outlined, white/10 background]
+
+BELOW BUTTONS — TRUST ROW:
+4 mini-stats in a row:
+· "4 Production Systems Built"
+· "2 Live Mobile Apps"
+· "₹20L+ Platform Value Delivered"
+· "Full Stack · End to End"
+(small, muted, separated by dots)
+```
+
+**Right column (40%):**
+An animated dashboard mockup widget — NOT a screenshot, a **coded SVG/JSX component** showing:
+- A mini dark card with "Bookings Today: 12" and a sparkline
+- Below it, a smaller card "Revenue ₹14,280"
+- A floating chip: "Payment Confirmed ✓"
+These enter with staggered `fadeInUp` animations. They gently float with a CSS `@keyframes` sinusoidal Y movement. No rotation, no excessive movement.
+
+**Background:**
+Centered radial gradient in indigo at 8% opacity. A very subtle dot grid pattern `background-image: radial-gradient(circle, #6366F1 1px, transparent 1px)` at 32px spacing, 3% opacity. Creates depth without noise.
+
+---
+
+#### 1.3 — SOCIAL PROOF STRIP
+
+Full-width, scrolling ticker on mobile, static row on desktop. Dark band separating Hero from next section.
+
+Content (6 items):
+```
+"PayU Payment Integration"  ·
+"React Native · iOS & Android"  ·
+"PostgreSQL · Drizzle ORM"  ·
+"End-to-End Delivery"  ·
+"Neon · Railway · Vercel"  ·
+"Business Logic Systems"
+```
+
+Each item: icon + text. Mono font, #6366F1 icons, muted text. Not animated on desktop. Scrolling marquee on mobile only.
+
+---
+
+#### 1.4 — WHAT I BUILD (Services Without Calling Them Services)
+
+**Section label:** `WHAT I BUILD`
+**Section headline:** "From Idea to Production System"
+**Subheadline:** "Every project I take on has a real business problem at its core."
+
+**4 cards in a 2×2 grid (desktop) / single column (mobile):**
+
+```
+Card 1 — Business Booking Platforms
+Icon: Calendar
+Description:
+"Reservation systems with real-time inventory,
+conflict checking, payment processing, and admin
+dashboards. Built for coworking spaces, service
+providers, and hospitality businesses."
+Tag examples: "PayU Integration" · "Multi-role Access" · "SMS/Email Alerts"
+
+Card 2 — Analytics & Trading Dashboards
+Icon: BarChart2
+Description:
+"Data-rich interfaces that turn raw numbers into
+actionable insight. Trade journals, P&L breakdowns,
+performance tracking, and portfolio visualizations."
+Tag examples: "Chart.js / Recharts" · "Real-time Data" · "CSV Export"
+
+Card 3 — Business Websites & Landing Pages
+Icon: Globe
+Description:
+"High-conversion business websites with modern
+design, clear messaging, lead capture forms, and
+performance optimization for Indian audiences."
+Tag examples: "Lead Generation" · "Mobile-first" · "SEO Ready"
+
+Card 4 — Automation & Workflow Tools
+Icon: Zap
+Description:
+"Custom tools that replace manual work. Service
+reminder systems, notification engines, CRM-light
+tools, and recurring workflow automators."
+Tag examples: "Node.js Cron Jobs" · "WhatsApp API" · "Email Automation"
+```
+
+Each card: dark glass surface, hover lifts with `translateY(-4px)` and indigo border glow (box-shadow: `0 0 0 1px #6366F1`).
+
+---
+
+#### 1.5 — FEATURED PROJECTS (The Money Section)
+
+**Section label:** `WORK`
+**Section headline:** "Systems I've Built"
+**Subheadline:** "Each project started as a business problem. Here's how I solved them."
+
+Render the top 3 projects from the projects data array. Space-Booker must be first.
+
+**Large Feature Card (Space-Booker):**
+Full-width card, ~500px height. Left side: project info. Right side: placeholder for screenshot (show a `[Screenshot Placeholder]` styled div in indigo tones — the user will replace this later).
+
+```
+PROJECT NUMBER: "01"  (large, Syne, 10% opacity — decorative)
+CATEGORY TAG: "Booking Platform · Mobile App · Admin Dashboard"
+NAME: "Space-Booker"
+DESCRIPTION:
+"A complete end-to-end coworking management platform.
+Mobile app for guests and corporate members, with meeting
+room reservations, a credit wallet, hybrid payment (credits
++ PayU), and a real-time admin command centre."
+KEY CALLOUTS (3 chips):
+· "React Native · iOS & Android"
+· "PayU · GST · 18% Auto-calc"
+· "Credit Economy Engine"
+CTA: "View Case Study →"
+```
+
+**Medium Cards (TradeLink + AutoMinder):**
+Two-column grid. Each card ~350px height.
+
+```
+Card — TradeLink
+PROJECT NUMBER: "02"
+CATEGORY: "Analytics Platform · Trading Journal"
+NAME: "TradeLink"
+DESCRIPTION:
+"A trading journal and portfolio analytics platform for
+active traders. P&L tracking, win-rate analytics,
+performance charts, and trade history management."
+CHIPS: "React · Recharts" · "P&L Analytics" · "Dashboard"
+CTA: "View Case Study →"
+
+Card — AutoMinder
+PROJECT NUMBER: "03"
+CATEGORY: "Business Automation · Service Tool"
+NAME: "AutoMinder"
+DESCRIPTION:
+"Smart service reminder system for auto repair shops.
+Automatically calculates next oil change dates based on
+oil type, vehicle type, and daily driving patterns —
+turning passive customers into repeat visits."
+CHIPS: "Node.js" · "Smart Calculations" · "WhatsApp Reminders"
+CTA: "View Case Study →"
+```
+
+Below the grid, a text link: "See all projects →" → `/projects`
+
+---
+
+#### 1.6 — MY PROCESS
+
+**Section label:** `PROCESS`
+**Section headline:** "How a Project Goes From Idea to Live"
+
+**4-step horizontal stepper (desktop) / vertical (mobile):**
+
+```
+Step 01 — Discovery
+"Understanding your business, your users, and the exact
+problem we're solving. Before any code, alignment."
+
+Step 02 — Architecture
+"Designing the data model, system flows, and technical
+stack. Decisions made here save weeks later."
+
+Step 03 — Development
+"Iterative builds with regular check-ins. Working
+software at each stage — not a big-bang reveal."
+
+Step 04 — Deployment
+"Live on Vercel, Railway, or your preferred host.
+Documented, tested, and handed over properly."
+```
+
+Each step: numbered pill + title + description. A dashed line connects steps on desktop. Animate with `staggerChildren` as the section scrolls into view.
+
+---
+
+#### 1.7 — SKILLS (Clean, Grouped — No Bars)
+
+**Section label:** `STACK`
+**Section headline:** "Tools I Work With"
+
+**4 group columns:**
+
+```
+Frontend
+React · Next.js · TypeScript · Tailwind CSS
+React Native · Expo Router · Framer Motion
+
+Backend
+Node.js · Express.js · REST API Design
+Drizzle ORM · JWT Auth · Nodemailer
+
+Database
+PostgreSQL · NeonDB · SQL Schema Design
+Credit Ledger Systems · Audit Trails
+
+Infrastructure
+Vercel · Railway · GitHub
+PayU Integration · Environment Config · CI/CD
+```
+
+No icon blobs. No progress bars. Each skill as a clean pill tag (`bg-white/5 border border-white/10 text-sm px-3 py-1 rounded-full`). Groups have a label in mono font. The section fades in column by column.
+
+---
+
+#### 1.8 — CTA BAND (Before Footer)
+
+Full-width dark band with radial glow behind text.
+
+```
+HEADLINE (Syne, large):
+"Have a project in mind?"
+
+SUBHEADLINE:
+"I'm currently available for freelance and contract work.
+Let's talk about what you need built."
+
+BUTTON: "Start a Conversation →" → /contact
+SECONDARY TEXT: "Usually respond within 24 hours."
+```
+
+---
+
+#### 1.9 — FOOTER
+
+Dark, clean. Three columns:
+
+```
+Column 1 — Brand
+"JB" monogram + "Jitesh Babani"
+"Full Stack Developer · Bhopal, India"
+Small copyright line.
+
+Column 2 — Navigation
+Home · Projects · Contact
+
+Column 3 — Connect
+GitHub (link)
+LinkedIn (link)
+Email (mailto link)
+Freelancer.com (link)
+```
+
+Bottom row: "Built with Next.js and Tailwind CSS. Deployed on Vercel." (mono, muted)
+
+---
+
+### 2. PROJECTS INDEX (`/projects`)
+
+Hero: `"All Projects"` headline + brief intro copy.
+
+Full-width grid of all 4 project cards (same card design as homepage medium cards but slightly larger). Show all 4.
+
+**Distinct Website** gets its card here:
+```
+PROJECT NUMBER: "04"
+CATEGORY: "Business Website · Lead Generation"
+NAME: "Distinct Co-working — Website"
+DESCRIPTION:
+"Business website for a Bhopal coworking company. Responsive
+design with brand-first aesthetics, space listings, membership
+plan showcases, and lead generation focus."
+CHIPS: "Responsive Design" · "Business Branding" · "Modern UI"
+```
+
+---
+
+### 3. PROJECT CASE STUDY (`/projects/[slug]`)
+
+This is the page that closes deals. Clients read this and decide: *"This person gets it."*
+
+#### Layout
+
+Full-width hero, then `max-w-4xl` centered content.
+
+#### Sections (in order):
+
+```
+3.1 — HERO
+Large project name (Syne, 80px), category tag, one-line description.
+Below: 3 meta pills: "Type: Booking Platform" · "Stack: React Native + Node.js" · "Status: Delivered"
+Full-width placeholder banner for project screenshot/video.
+
+3.2 — THE PROBLEM
+"What business problem did this solve?"
+2–3 paragraphs in DM Sans. Written like a brief, not a thesis.
+
+3.3 — THE SOLUTION
+What was built. Keep it human. Write as if explaining to the client.
+
+3.4 — KEY FEATURES
+Icon + title + description list (4–6 features). Not bullet points — styled feature rows.
+
+3.5 — SYSTEM ARCHITECTURE
+A coded diagram component (SVG or simple HTML/CSS boxes with arrows) showing how the pieces connect.
+Label the boxes with real tech names.
+
+3.6 — TECHNOLOGY STACK
+Clean table or grouped pills. Two columns: "Category" · "Technology".
+
+3.7 — SCREENSHOTS / GALLERY
+Responsive image grid. Show [Placeholder] styled containers with "Add screenshot here" labels.
+Easy to replace with real images later — use <Image /> from next/image.
+
+3.8 — DEMO VIDEO
+A video placeholder div: dark card with play button icon.
+"Demo video coming soon" caption. Easy to replace with a real embed.
+
+3.9 — RESULTS & IMPACT
+Not metrics you don't have — honest callouts:
+· "Delivered end-to-end as a solo developer"
+· "Production-ready for App Store + Play Store submission"
+· "Includes full product documentation"
+
+3.10 — LESSONS LEARNED
+2–3 honest paragraphs. Shows maturity. Clients respect this.
+
+3.11 — NEXT PROJECT CTA
+"Up next: [Next Project Name] →"
+```
+
+---
+
+### 4. PROJECT DATA (`/src/data/projects.ts`)
+
+Define a `Project` TypeScript type:
+
+```typescript
+type ProjectFeature = {
+  icon: string; // Lucide icon name
+  title: string;
+  description: string;
+};
+
+type ProjectStackItem = {
+  category: string;
+  items: string[];
+};
+
+type Project = {
+  slug: string;
+  number: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;         // short, for cards
+  longDescription: string;     // for case study hero
+  problem: string;             // multi-paragraph HTML/markdown
+  solution: string;            // multi-paragraph
+  features: ProjectFeature[];
+  stack: ProjectStackItem[];
+  chips: string[];             // 3 tags shown on cards
+  status: "Delivered" | "In Progress" | "Concept";
+  featured: boolean;
+  order: number;
+  lessonsLearned: string;
+  results: string[];
+};
+```
+
+**Pre-populate all 4 projects with real content:**
+
+---
+
+**Project: space-booker**
+```
+name: "Space-Booker"
+category: "Booking Platform · Mobile App · Admin Dashboard"
+tagline: "Complete coworking management and booking platform"
+problem:
+"Distinct Co-working in Bhopal had no digital booking system.
+Customers called or walked in. Corporate clients had no way to
+manage their monthly credit allocations. The owner had no visibility
+into daily revenue, pending payments, or space occupancy in real time.
+
+The challenge was building a system that handled two completely different
+user types — pay-per-booking guests and monthly credit-allocation
+corporate members — on a single platform, with a hybrid payment flow
+that could split a bill between credits and online payment in one transaction."
+
+solution:
+"Built a complete three-component system: a React Native mobile app
+(iOS + Android), a Node.js/PostgreSQL backend, and a web-based admin
+command centre.
+
+The mobile app handles passwordless OTP auth, space discovery, multi-date
+booking with time slot selection, the credit economy (earn/spend/overdraft),
+hybrid PayU + credit payments with SHA-512 hash verification, and a full
+booking history. The admin dashboard provides live today-view with 30-second
+auto-refresh, booking management, member approval workflow, credit ledger
+adjustments with audit trail, and a manual booking wizard with VIP override."
+
+features: [
+  { title: "Credit Economy Engine",
+    description: "Corporate members receive monthly credit allocations. The system auto-deducts, handles partial coverage (hybrid pay), allows next-month overdraft borrowing, and resets using SQL formula: SET credits = monthlyAllocation + LEAST(credits, 0)." },
+  { title: "Hybrid Payment Flow",
+    description: "A single booking can be split: credits cover what they can, PayU collects the remainder. One transaction, one receipt." },
+  { title: "Real-time Admin Dashboard",
+    description: "Live space occupancy grid, today's bookings, revenue counter, and pending alerts — auto-refreshes every 30 seconds." },
+  { title: "Smart Conference Room Logic",
+    description: "A 4-seater and 6-seater joined by a removable wall form a 10-seater. Booking the 10-seater automatically blocks both smaller rooms." },
+  { title: "Ghost Booking Cleanup",
+    description: "Incomplete bookings auto-expire (10 min for app, 24 hrs for admin) via node-cron, keeping inventory clean without manual intervention." },
+  { title: "App Store Compliant",
+    description: "Includes account deletion, in-app legal pages (T&C, Privacy, Refund), and a static-OTP reviewer bypass account for App Store/Play Store review teams." }
+]
+
+stack: [
+  { category: "Mobile", items: ["React Native", "Expo", "Expo Router", "TypeScript"] },
+  { category: "Admin Dashboard", items: ["React", "Vite", "Vanilla CSS"] },
+  { category: "Backend", items: ["Node.js", "Express.js", "Drizzle ORM"] },
+  { category: "Database", items: ["PostgreSQL", "NeonDB"] },
+  { category: "Payments", items: ["PayU India", "SHA-512 Hash Verification", "18% GST Auto-calculation"] },
+  { category: "Auth", items: ["Passwordless Email OTP", "Nodemailer / Gmail SMTP", "JWT Sessions"] },
+  { category: "Infrastructure", items: ["Railway", "Vercel", "node-cron"] }
+]
+
+results: [
+  "Delivered end-to-end as a solo developer",
+  "Four workspaces in a pnpm monorepo — mobile app, admin dashboard, API, and database",
+  "Production-ready for App Store + Google Play submission",
+  "Complete product documentation written for non-technical client handover"
+]
+
+lessonsLearned:
+"The credit economy was the most architecturally complex piece — specifically the overdraft
+logic that lets members borrow against next month's allocation. Getting the SQL reset formula
+right (absorbing debt while wiping unused balance) required careful thought about edge cases.
+
+Building for two completely different user types in one codebase also taught me the importance
+of separating role logic early — it's much harder to retrofit RBAC than to architect it upfront.
+
+The manual booking wizard in the admin dashboard was a feature that had no specification
+— I had to design the UX and the credit calculation flow from scratch while maintaining parity
+with the mobile app logic."
+```
+
+---
+
+**Project: tradelink**
+```
+name: "TradeLink"
+category: "Analytics Platform · Trading Journal"
+tagline: "Trade smarter with a journal that does the math"
+problem:
+"Active traders track trades in spreadsheets or basic notes.
+They have no quick way to see their win rate, average P&L per
+trade, best performing setups, or performance over time.
+Without structured data, improving trading discipline is guesswork."
+
+solution:
+"Built a full-stack trading journal platform where traders log every
+trade — entry, exit, instrument, position size, and setup notes.
+The platform auto-calculates P&L, win rate, drawdown, and performance
+trends and presents them in a data-rich, clean dashboard."
+
+features: [
+  { title: "Trade Logging", description: "Quick entry form for logging trades with entry/exit prices, instrument, quantity, and notes." },
+  { title: "P&L Analytics", description: "Automatic profit/loss calculation per trade and aggregated over time periods." },
+  { title: "Performance Dashboard", description: "Win rate, average trade, best/worst trades, and equity curve visualization." },
+  { title: "Data Visualization", description: "Charts showing cumulative P&L, trade frequency, and performance by setup type." }
+]
+
+stack: [
+  { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
+  { category: "Charts", items: ["Recharts", "Chart.js"] },
+  { category: "Backend", items: ["Node.js", "Express.js"] },
+  { category: "Database", items: ["PostgreSQL"] }
+]
+```
+
+---
+
+**Project: autominder**
+```
+name: "AutoMinder"
+category: "Business Automation · Service Reminder Tool"
+tagline: "Turn one-time customers into repeat visitors"
+problem:
+"Auto repair shops lose repeat business because there's no easy way
+to track when each customer's car is due for its next oil change.
+The shop owner relies on memory or paper records, and customers
+only return when something breaks — not proactively.
+
+The problem wasn't just reminders. It was intelligent reminders —
+ones that account for the fact that a 2-wheeler with mineral oil
+running 40km/day has a different service window than a 4-wheeler
+with synthetic oil doing 20km/day."
+
+solution:
+"Built a service management platform that tracks customers, their
+vehicles, and complete service history. The core is a smart calculation
+engine that determines the next service date from oil type (Mineral /
+Semi-Synthetic / Synthetic), vehicle type (2-Wheeler / 4-Wheeler),
+current odometer reading, and daily km usage — derived automatically
+from previous service records.
+
+The shop owner gets a live dashboard showing overdue vehicles, this
+week's upcoming services, and an at-a-glance count of active customers."
+
+features: [
+  { title: "Smart Due-Date Engine",
+    description: "Calculates next oil change date using oil type lifespan standards (e.g. 2W + Mineral = 2,500km) × the customer's actual daily km usage derived from odometer deltas between services." },
+  { title: "Daily KM Auto-Calculation",
+    description: "Compares current odometer to previous service odometer, divides by days elapsed. Manual override available for mechanics who know driving habits have changed." },
+  { title: "Multi-vehicle per Customer",
+    description: "One customer can own multiple vehicles (2W and 4W). Each vehicle gets its own independent service history and reminder timeline." },
+  { title: "Priority Dashboard",
+    description: "Overdue count, this-week count, and total active customers shown upfront. A prioritized list tells the owner exactly who to call today." },
+  { title: "Quick Service Wizard",
+    description: "3-step workflow to log a new service from the dashboard in under 30 seconds — no navigating to a separate page." },
+  { title: "Complete Service History",
+    description: "Every vehicle has a full chronological service log. Status (Pending / Overdue / Completed) visible at a glance. Past records editable for corrections." }
+]
+
+stack: [
+  { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
+  { category: "Backend", items: ["Node.js", "Express.js"] },
+  { category: "Database", items: ["PostgreSQL"] },
+  { category: "Planned Features", items: ["WhatsApp Reminder API", "Digital Invoice PDF"] }
+]
+
+lessonsLearned:
+"The calculation engine was the heart of this project. The tricky part was designing a
+formula that gracefully handles edge cases: what if this is the vehicle's first service
+(no previous odometer to compare)? What if someone inputs an odometer lower than the
+last reading? Building in manual override while keeping the auto-calculation as the default
+took iteration to get right.
+
+It also reinforced that real business software needs to respect the operator's knowledge.
+The mechanic knows their regular customer drives 80km a day — the system should let them
+record that override rather than fighting the automatic calculation."
+```
+
+---
+
+**Project: distinct-website**
+```
+name: "Distinct Co-working — Website"
+category: "Business Website · Branding · Lead Generation"
+tagline: "Online presence for Bhopal's coworking company"
+problem:
+"Distinct Co-working had no professional online presence. Potential
+members Googled coworking in Bhopal and found nothing. The business
+needed a website that explained the space, showcased membership plans,
+and turned visitors into enquiries."
+
+solution:
+"Designed and built a modern, responsive business website with a
+mobile-first approach. The site showcases the space, explains
+membership tiers, and has a clear lead-generation focus —
+every section flows toward a contact/enquiry action."
+
+features: [
+  { title: "Responsive Design", description: "Pixel-perfect on mobile, tablet, and desktop. India's internet is mobile-first." },
+  { title: "Space Showcase", description: "Visual listings of hot desks, premium desks, dedicated cabins, and meeting rooms." },
+  { title: "Membership Plans", description: "Clear pricing and features for Guest, Corporate, and Dedicated membership tiers." },
+  { title: "Lead Generation", description: "Contact forms and CTA buttons at strategic points throughout the page." }
+]
+
+stack: [
+  { category: "Frontend", items: ["React", "Tailwind CSS"] },
+  { category: "Design", items: ["Responsive Design", "Mobile-first", "Brand-aligned UI"] }
+]
+```
+
+---
+
+### 5. CONTACT PAGE (`/contact`)
+
+#### Layout: Two-column (desktop) / stacked (mobile)
+
+**Left column — Info & Links**
+
+```
+HEADLINE (Syne):
+"Let's build something."
+
+BODY:
+"I'm available for freelance and contract projects.
+If you have a business problem that needs a custom
+software solution, I'd love to hear about it.
+
+Based in Bhopal, India.
+Available for remote work anywhere."
+
+CONTACT METHODS (styled cards):
+· Email: jitesh@example.com (update this)
+· LinkedIn: linkedin.com/in/jiteshbabani (update)
+· Freelancer: freelancer.com/u/jiteshbabani (update)
+· GitHub: github.com/jiteshbabani (update)
+· WhatsApp: [Add number] — shows "Chat on WhatsApp" with icon
+
+AVAILABILITY BADGE:
+Green pulsing dot + "Currently available for new projects"
+```
+
+**Right column — Contact Form**
+
+Fields:
+```
+Name *
+Email *
+Budget Range (Select: "Under ₹50K" / "₹50K–₹2L" / "₹2L–₹5L" / "₹5L+")
+Project Type (Select: "Booking Platform" / "Analytics Dashboard" / "Business Website" / "Mobile App" / "Automation Tool" / "Other")
+Message * (textarea, 4 rows minimum)
+```
+
+Submit button: "Send Message →" (full-width on mobile).
+
+On success: Replace form with a confirmation card: "Message received. I'll respond within 24 hours."
+
+Form state: loading spinner on submit button. Error states on invalid fields. No library required — pure React state + HTML5 validation.
+
+**Note:** Backend for form can use Resend API or Formspree initially. Add a `NEXT_PUBLIC_FORM_ENDPOINT` env variable for easy swap.
+
+---
+
+## ANIMATIONS SPEC (Framer Motion)
+
+**Rule:** Every animation must serve the content, not distract from it.
+
+```typescript
+// Standard page entry for sections
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+// Stagger children (for feature cards, skill groups, etc.)
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+// Trigger: whileInView with once: true
+// viewport: { once: true, margin: "-100px" }
+```
+
+**Specific animations:**
+- Hero headline: `clipPath` reveal from bottom — each word, staggered 0.05s
+- Hero dashboard widget: `fadeInUp` at 0.6s delay after headline
+- Nav: No animation on load. Blur/opacity background triggers on scroll only.
+- Project cards: `fadeInUp` stagger as grid enters viewport
+- Process steps: `scale` from 0.9 to 1 + `fadeIn` per step, staggered
+- CTA band: Text `fadeInUp` only. No parallax.
+- Footer: No animation. Just renders.
+
+---
+
+## SEO SPECIFICATION
+
+**Root metadata (`/src/app/layout.tsx`):**
+```typescript
+{
+  title: {
+    default: "Jitesh Babani — Full Stack Developer",
+    template: "%s | Jitesh Babani"
+  },
+  description:
+    "Full Stack Developer in Bhopal, India specializing in booking platforms, business dashboards, analytics systems, and mobile apps. Available for freelance projects.",
+  keywords: [
+    "Full Stack Developer Bhopal",
+    "Freelance Developer India",
+    "React Native Developer",
+    "Next.js Developer",
+    "Booking Platform Developer",
+    "Business Software Developer"
+  ],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Jitesh Babani — Full Stack Developer"
+  }
+}
+```
+
+**Per-page metadata:** Each page and case study uses `generateMetadata` with unique title and description. Project pages include the project name and one-line description in the meta.
+
+---
+
+## COMPONENT ARCHITECTURE
+
+```
+/src
+  /app
+    /layout.tsx          ← Root layout, fonts, global styles
+    /page.tsx            ← Home page
+    /projects
+      /page.tsx          ← Projects index
+      /[slug]
+        /page.tsx        ← Case study (generateStaticParams)
+    /contact
+      /page.tsx
+  /components
+    /ui
+      /Button.tsx        ← Variant: filled | outlined | ghost
+      /Badge.tsx         ← Status badges, category tags
+      /Card.tsx          ← Base card wrapper with hover states
+      /SectionLabel.tsx  ← Eyebrow labels (WORK, PROCESS, etc.)
+    /layout
+      /Nav.tsx
+      /Footer.tsx
+    /home
+      /Hero.tsx
+      /SocialProofStrip.tsx
+      /WhatIBuild.tsx
+      /FeaturedProjects.tsx
+      /Process.tsx
+      /Skills.tsx
+      /CTABand.tsx
+    /projects
+      /ProjectCard.tsx   ← Used in both index and home
+      /ProjectGrid.tsx
+    /case-study
+      /CaseStudyHero.tsx
+      /FeatureRow.tsx
+      /StackTable.tsx
+      /ScreenshotGallery.tsx
+      /ArchitectureDiagram.tsx
+    /contact
+      /ContactForm.tsx
+      /ContactLinks.tsx
+  /data
+    /projects.ts         ← All project content (typed)
+  /lib
+    /utils.ts            ← cn() helper and shared utilities
+  /types
+    /project.ts          ← Project type definitions
+```
+
+---
+
+## PERFORMANCE REQUIREMENTS
+
+- **Core Web Vitals target:** LCP < 2.5s, CLS < 0.1, FID < 100ms
+- Use `next/image` for all images with `width`/`height` set
+- All Framer Motion animations use `will-change: transform` via `layout` prop sparingly
+- `loading="lazy"` on below-fold images
+- No unused icon imports — import only used Lucide icons
+- Font preloading via `next/font` — no FOUT
+- Use React Server Components for static content; Client Components only where animation/interactivity is required. Mark with `"use client"` only when necessary.
+
+---
+
+## PLACEHOLDER STRATEGY
+
+All image placeholders must be styled, not blank. Use:
+
+```tsx
+<div className="w-full h-[300px] rounded-xl bg-gradient-to-br
+  from-indigo-500/10 to-teal-500/10 border border-white/10
+  flex items-center justify-center">
+  <p className="text-white/30 text-sm font-mono">
+    [ Screenshot · Replace with next/image ]
+  </p>
+</div>
+```
+
+This ensures the layout looks complete in the initial build while the user adds real screenshots.
+
+---
+
+## COPY GUIDELINES
+
+**Write in second person to the client, not third person to a recruiter.**
+
+❌ "Jitesh has 2 years of experience in React"
+✅ "I build production React applications that run at scale"
+
+❌ "Projects Completed: 4"
+✅ "4 business systems shipped, from booking platforms to analytics tools"
+
+❌ "I am passionate about coding"
+✅ "I write software that solves real operational problems for real businesses"
+
+**Tone:** Confident without arrogance. Specific without being technical to a fault. Business-aware.
+
+**The one feeling every line of copy should create:**
+*"This developer thinks like a business owner, not just an engineer."*
+
+---
+
+## ENVIRONMENT VARIABLES
+
+```env
+# .env.local
+NEXT_PUBLIC_SITE_URL=https://jiteshbabani.dev
+NEXT_PUBLIC_FORM_ENDPOINT=   # Formspree or Resend endpoint
+NEXT_PUBLIC_EMAIL=           # Your email
+NEXT_PUBLIC_GITHUB=          # GitHub URL
+NEXT_PUBLIC_LINKEDIN=        # LinkedIn URL
+NEXT_PUBLIC_FREELANCER=      # Freelancer.com URL
+```
+
+---
+
+## DELIVERABLES CHECKLIST
+
+The completed build must include:
+
+- [ ] `/` Home page — all 8 sections complete
+- [ ] `/projects` Projects index — all 4 cards
+- [ ] `/projects/space-booker` — Full case study
+- [ ] `/projects/tradelink` — Full case study
+- [ ] `/projects/autominder` — Full case study
+- [ ] `/projects/distinct-website` — Full case study
+- [ ] `/contact` — Form + contact links
+- [ ] Nav with mobile hamburger overlay
+- [ ] Footer
+- [ ] `projects.ts` data file — fully typed, all 4 projects populated
+- [ ] SEO metadata on all pages
+- [ ] Framer Motion animations on all key sections
+- [ ] Responsive design — tested at 375px, 768px, 1280px, 1440px
+- [ ] `README.md` — how to add/edit projects, how to replace screenshots
+- [ ] `.env.local.example` — all env variables documented
+
+---
+
+## FINAL INSTRUCTION TO THE AI
+
+Do not produce a generic developer portfolio.
+
+The visitor who matters most is a **business owner in Bhopal or anywhere in India** who has a software problem and is deciding whether to trust you with it. They do not care about your GitHub streak. They care about:
+
+1. Have you built something like what I need?
+2. Do you understand how my business works?
+3. Will you actually deliver?
+
+Every section, every word, every animation must answer one or more of these questions.
+
+Build it like it's your own business card. Because it is.
+
+---
+
+*End of Specification — Version 1.0*
+*Prepared for: Jitesh Babani | Portfolio Build 2026*
+IMPORTANT:
+
+The portfolio must be optimized for freelance client acquisition.
+
+The primary audience is:
+- Startup founders
+- Small business owners
+- Coworking operators
+- Service businesses
+
+The portfolio should feel like a software consultancy website rather than a personal portfolio.
+
+Every project should be framed around:
+1. Business problem
+2. Solution
+3. Operational impact
+
+Avoid showcasing technologies before business outcomes.
