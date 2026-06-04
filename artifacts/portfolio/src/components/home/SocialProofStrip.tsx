@@ -6,38 +6,36 @@ const items = [
   "PostgreSQL · Drizzle ORM",
   "End-to-End Delivery",
   "Neon · Railway · Vercel",
-  "Business Logic Systems"
+  "Business Logic Systems",
+  "Full Stack · TypeScript",
+  "Mobile App · Admin Dashboard",
 ];
 
 export function SocialProofStrip() {
   return (
-    <div className="w-full bg-card border-y border-border py-4 overflow-hidden relative">
-      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-card to-transparent z-10 md:hidden" />
-      <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-card to-transparent z-10 md:hidden" />
-      
-      {/* Desktop view: centered, static */}
-      <div className="hidden md:flex justify-center items-center gap-12 container mx-auto px-4 max-w-7xl">
-        {items.map((item, i) => (
-          <div key={i} className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="font-mono text-xs font-medium text-foreground tracking-wide whitespace-nowrap">
-              {item}
-            </span>
-          </div>
-        ))}
-      </div>
+    <div
+      className="w-full border-y border-border py-4 overflow-hidden relative"
+      style={{ background: "linear-gradient(180deg, #0D0D14 0%, #111118 100%)" }}
+    >
+      {/* Edge fades — both sides on all viewports */}
+      <div className="absolute inset-y-0 left-0 w-20 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, #0D0D14, transparent)" }} />
+      <div className="absolute inset-y-0 right-0 w-20 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, #0D0D14, transparent)" }} />
 
-      {/* Mobile view: scrolling marquee */}
-      <div className="flex md:hidden w-[200%]">
+      {/* Desktop: scrolling marquee (same as mobile, always moving) */}
+      <div className="flex items-center" style={{ width: "max-content" }}>
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-          className="flex items-center justify-around w-full"
+          transition={{ duration: 28, ease: "linear", repeat: Infinity }}
+          className="flex items-center"
         >
-          {/* Double the items for seamless loop */}
           {[...items, ...items].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 px-6 opacity-60">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <div key={i} className="flex items-center gap-3 px-8 opacity-50 hover:opacity-90 transition-opacity duration-300 cursor-default">
+              <div
+                className="w-1.5 h-1.5 rounded-full shrink-0"
+                style={{ background: "hsl(var(--primary))" }}
+              />
               <span className="font-mono text-xs font-medium text-foreground tracking-wide whitespace-nowrap">
                 {item}
               </span>

@@ -1,175 +1,462 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
+function AdminDashboardMockup() {
+  const bookings = [
+    { name: "Rahul S.", space: "Meeting Room A", time: "10:00–11:00", amount: "₹800", isNew: true },
+    { name: "Priya M.", space: "Hot Desk 3", time: "09:00–18:00", amount: "₹350", isNew: false },
+    { name: "Aditya K.", space: "10-Seater Conf.", time: "14:00–16:00", amount: "₹1,200", isNew: false },
+  ];
+
+  return (
+    <motion.div
+      initial={{ y: 30 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.9, delay: 0.65, ease: "easeOut" }}
+      className="relative w-full"
+    >
+      {/* Ambient glow */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          inset: "-80px -60px",
+          zIndex: -1,
+          background:
+            "radial-gradient(ellipse 70% 70% at 55% 50%, rgba(99,102,241,0.28) 0%, rgba(20,184,166,0.08) 55%, transparent 75%)",
+          filter: "blur(40px)",
+        }}
+      />
+
+      {/* Browser Frame */}
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{
+          border: "1px solid rgba(255,255,255,0.16)",
+          background: "#12121E",
+          boxShadow:
+            "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset, 0 1px 0 rgba(255,255,255,0.1) inset",
+        }}
+      >
+        {/* Browser Chrome */}
+        <div
+          className="flex items-center gap-3 px-4 py-3"
+          style={{
+            background: "#0A0A12",
+            borderBottom: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          <div className="flex gap-1.5">
+            {["#FF5F57", "#FEBC2E", "#28C840"].map((c, i) => (
+              <div key={i} className="w-2.5 h-2.5 rounded-full" style={{ background: c, opacity: 0.85 }} />
+            ))}
+          </div>
+          <div className="flex-1 mx-2">
+            <div
+              className="rounded-md px-3 py-1.5 flex items-center gap-2"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <div className="w-2 h-2 rounded-full shrink-0" style={{ background: "rgba(20,184,166,0.8)" }} />
+              <span
+                className="font-mono truncate"
+                style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)" }}
+              >
+                space-booker.app/admin
+              </span>
+            </div>
+          </div>
+          <div
+            className="flex items-center gap-1.5 rounded-full px-2.5 py-1"
+            style={{
+              background: "rgba(20,184,166,0.15)",
+              border: "1px solid rgba(20,184,166,0.3)",
+            }}
+          >
+            <span className="relative flex" style={{ width: 6, height: 6 }}>
+              <span
+                className="animate-ping absolute inline-flex rounded-full opacity-75"
+                style={{ inset: 0, background: "#14B8A6" }}
+              />
+              <span
+                className="relative inline-flex rounded-full"
+                style={{ width: 6, height: 6, background: "#14B8A6" }}
+              />
+            </span>
+            <span className="font-mono" style={{ fontSize: "9px", color: "#14B8A6", letterSpacing: "0.07em" }}>
+              LIVE
+            </span>
+          </div>
+        </div>
+
+        {/* Dashboard Body */}
+        <div className="p-4 space-y-3">
+          {/* Header Row */}
+          <div className="flex items-center justify-between">
+            <div>
+              <div
+                className="font-mono uppercase tracking-widest mb-0.5"
+                style={{ fontSize: "8px", color: "#818CF8" }}
+              >
+                Space-Booker
+              </div>
+              <div
+                className="font-display font-bold"
+                style={{ fontSize: "14px", color: "rgba(255,255,255,0.92)" }}
+              >
+                Admin Dashboard
+              </div>
+            </div>
+            <div className="font-mono" style={{ fontSize: "9px", color: "rgba(255,255,255,0.4)" }}>
+              Today, Jun 04
+            </div>
+          </div>
+
+          {/* Stats Row — visible immediately, no animation delay */}
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { label: "Bookings", value: "12", sub: "+3 today", vc: "#818CF8" },
+              { label: "Revenue", value: "₹14.2K", sub: "today", vc: "#14B8A6" },
+              { label: "Spaces", value: "3 / 5", sub: "occupied", vc: "#818CF8" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="rounded-xl p-3"
+                style={{
+                  background: "rgba(255,255,255,0.07)",
+                  border: "1px solid rgba(255,255,255,0.11)",
+                }}
+              >
+                <div className="font-mono mb-1.5" style={{ fontSize: "8px", color: "rgba(255,255,255,0.5)" }}>
+                  {stat.label}
+                </div>
+                <div
+                  className="font-display font-bold"
+                  style={{ fontSize: "17px", color: stat.vc, lineHeight: 1 }}
+                >
+                  {stat.value}
+                </div>
+                <div className="font-mono mt-1" style={{ fontSize: "8px", color: "rgba(255,255,255,0.35)" }}>
+                  {stat.sub}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Sparkline Card */}
+          <div
+            className="rounded-xl p-3"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.09)",
+            }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-mono" style={{ fontSize: "8px", color: "rgba(255,255,255,0.45)" }}>
+                Bookings this week
+              </span>
+              <span className="font-mono font-semibold" style={{ fontSize: "8px", color: "#14B8A6" }}>
+                ↑ 24%
+              </span>
+            </div>
+            <svg viewBox="0 0 200 34" className="w-full" style={{ height: 34 }}>
+              <defs>
+                <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#6366F1" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M0,30 C14,30 20,22 36,17 C52,12 60,8 76,10 C92,12 102,24 118,18 C134,12 142,4 158,6 C170,8 185,2 200,4"
+                fill="none"
+                stroke="#818CF8"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M0,30 C14,30 20,22 36,17 C52,12 60,8 76,10 C92,12 102,24 118,18 C134,12 142,4 158,6 C170,8 185,2 200,4 L200,34 L0,34 Z"
+                fill="url(#sparkGrad)"
+              />
+              {([[36,17],[76,10],[118,18],[158,6],[200,4]] as [number,number][]).map(([cx,cy], i) => (
+                <circle key={i} cx={cx} cy={cy} r="3" fill="#818CF8" />
+              ))}
+            </svg>
+          </div>
+
+          {/* Live Booking Feed */}
+          <div
+            className="rounded-xl overflow-hidden"
+            style={{
+              border: "1px solid rgba(255,255,255,0.09)",
+              background: "rgba(255,255,255,0.03)",
+            }}
+          >
+            <div
+              className="px-3 py-2 flex items-center justify-between"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
+              }}
+            >
+              <span
+                className="font-mono uppercase tracking-wider"
+                style={{ fontSize: "8px", color: "rgba(255,255,255,0.45)" }}
+              >
+                Recent Bookings
+              </span>
+              <span className="font-mono" style={{ fontSize: "7px", color: "rgba(99,102,241,0.75)" }}>
+                auto-refresh 30s
+              </span>
+            </div>
+
+            {bookings.map((b, i) => (
+              <div
+                key={i}
+                className="px-3 py-2.5 flex items-center justify-between gap-2"
+                style={{
+                  borderBottom: i < bookings.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                  background: i === 0 ? "rgba(99,102,241,0.07)" : "transparent",
+                }}
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <div
+                    className="rounded-full flex items-center justify-center font-mono font-bold shrink-0"
+                    style={{
+                      width: 22,
+                      height: 22,
+                      background: "rgba(99,102,241,0.22)",
+                      color: "#818CF8",
+                      fontSize: "9px",
+                    }}
+                  >
+                    {b.name[0]}
+                  </div>
+                  <div className="min-w-0">
+                    <div
+                      className="font-sans font-medium truncate"
+                      style={{ fontSize: "10px", color: "rgba(255,255,255,0.8)" }}
+                    >
+                      {b.name}{" "}
+                      <span style={{ color: "rgba(255,255,255,0.4)" }}>· {b.space}</span>
+                    </div>
+                    <div className="font-mono" style={{ fontSize: "8px", color: "rgba(255,255,255,0.32)" }}>
+                      {b.time}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {b.isNew && (
+                    <span
+                      className="font-mono rounded-full px-1.5 py-0.5"
+                      style={{
+                        fontSize: "7px",
+                        background: "rgba(20,184,166,0.18)",
+                        color: "#14B8A6",
+                        border: "1px solid rgba(20,184,166,0.32)",
+                      }}
+                    >
+                      NEW
+                    </span>
+                  )}
+                  <span
+                    className="font-mono font-semibold"
+                    style={{ fontSize: "10px", color: "rgba(255,255,255,0.75)" }}
+                  >
+                    {b.amount}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Floating chip — bottom left */}
+      <motion.div
+        animate={{ y: [-3, 3, -3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute flex items-center gap-2 rounded-full"
+        style={{
+          bottom: -14,
+          left: -12,
+          padding: "6px 14px",
+          backdropFilter: "blur(12px)",
+          background: "rgba(20,184,166,0.14)",
+          border: "1px solid rgba(20,184,166,0.32)",
+          boxShadow: "0 4px 20px rgba(20,184,166,0.18)",
+        }}
+      >
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#14B8A6" }} />
+        <span className="font-mono" style={{ fontSize: "10px", color: "#14B8A6" }}>
+          Payment Confirmed
+        </span>
+      </motion.div>
+
+      {/* Floating chip — top right */}
+      <motion.div
+        animate={{ y: [3, -3, 3] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute flex items-center gap-2 rounded-full"
+        style={{
+          top: -14,
+          right: -12,
+          padding: "6px 14px",
+          backdropFilter: "blur(12px)",
+          background: "rgba(99,102,241,0.14)",
+          border: "1px solid rgba(99,102,241,0.35)",
+          boxShadow: "0 4px 20px rgba(99,102,241,0.18)",
+        }}
+      >
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#818CF8" }} />
+        <span className="font-mono" style={{ fontSize: "10px", color: "#818CF8" }}>
+          Credits Applied · ₹500
+        </span>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function Hero() {
-  const headlineWords = "Software That Moves Your Business Forward.".split(" ");
+  const words = ["Software", "That", "Moves", "Your", "Business", "Forward."];
 
   return (
     <section className="relative min-h-[100dvh] flex items-center pt-24 pb-16 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-background z-0" />
-      <div 
-        className="absolute inset-0 z-0 opacity-[0.03]"
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle, #6366F1 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.22) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
+          opacity: 0.45,
+          maskImage: "radial-gradient(ellipse 110% 100% at 50% 40%, black 15%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse 110% 100% at 50% 40%, black 15%, transparent 75%)",
         }}
       />
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full z-0 opacity-10 pointer-events-none"
+      {/* Right-side accent glow */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: "radial-gradient(circle, #6366F1 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 50% 60% at 75% 45%, rgba(99,102,241,0.1) 0%, transparent 70%)",
         }}
       />
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-16 items-center">
           {/* Left Column */}
-          <div className="lg:col-span-7 flex flex-col items-start">
+          <div className="flex flex-col items-start">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="font-mono text-sm text-primary mb-6 tracking-wide"
+              className="font-mono text-xs mb-7 tracking-widest uppercase flex items-center gap-2.5"
+              style={{ color: "#818CF8" }}
             >
+              <span className="inline-block h-px w-6" style={{ background: "#818CF8" }} />
               Full Stack Developer · Bhopal, India
             </motion.div>
 
-            <h1 className="font-display font-bold text-5xl sm:text-6xl md:text-7xl leading-[1.1] mb-8">
-              {headlineWords.map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 20, clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)" }}
-                  animate={{ opacity: 1, y: 0, clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-                  transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
-                  className="inline-block mr-3 mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
-                >
-                  {word}
-                </motion.span>
-              ))}
+            <h1
+              className="font-display font-bold leading-[1.07] mb-8"
+              style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+            >
+              {words.map((word, i) => {
+                const isAccent = word === "Forward.";
+                return (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 28, clipPath: "inset(0 0 100% 0)" }}
+                    animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+                    transition={{
+                      duration: 0.55,
+                      delay: i * 0.065,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                    className="inline-block mr-[0.22em] mb-1"
+                    style={
+                      isAccent
+                        ? {
+                            backgroundImage: "linear-gradient(135deg, #6366F1 0%, #14B8A6 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }
+                        : { color: "rgba(255,255,255,0.95)" }
+                    }
+                  >
+                    {word}
+                  </motion.span>
+                );
+              })}
             </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-sans"
+              transition={{ duration: 0.6, delay: 0.48, ease: "easeOut" }}
+              className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10 leading-relaxed font-sans"
             >
-              I build booking platforms, business dashboards, analytics systems, and workflow automation tools that solve real operational problems.
+              I build booking platforms, business dashboards, analytics systems, and
+              workflow automation tools that solve real operational problems.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-              className="flex flex-wrap items-center gap-4 mb-16"
+              transition={{ duration: 0.6, delay: 0.56, ease: "easeOut" }}
+              className="flex flex-wrap items-center gap-3 mb-14"
             >
               <Link
                 href="/projects"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-md font-medium transition-colors"
+                data-testid="button-view-work"
+                className="font-medium text-white px-7 py-3.5 rounded-xl text-sm"
+                style={{
+                  background: "hsl(var(--primary))",
+                  boxShadow: "0 0 24px rgba(99,102,241,0.38)",
+                  transition: "box-shadow 0.2s, background 0.2s",
+                }}
               >
                 View My Work
               </Link>
               <Link
                 href="/contact"
-                className="border border-border hover:border-primary/50 bg-white/5 hover:bg-white/10 text-foreground px-8 py-4 rounded-md font-medium transition-all"
+                data-testid="button-get-in-touch"
+                className="font-medium text-foreground px-7 py-3.5 rounded-xl text-sm"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.14)",
+                  background: "rgba(255,255,255,0.04)",
+                  transition: "border-color 0.2s, background 0.2s",
+                }}
               >
                 Get in Touch
               </Link>
             </motion.div>
 
-            {/* Trust Row */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
-              className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground font-mono"
+              transition={{ duration: 0.8, delay: 0.75, ease: "easeOut" }}
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground font-mono"
             >
-              <span>4 Production Systems Built</span>
-              <span className="w-1 h-1 rounded-full bg-border" />
-              <span>2 Live Mobile Apps</span>
-              <span className="w-1 h-1 rounded-full bg-border" />
-              <span>₹20L+ Platform Value Delivered</span>
-              <span className="w-1 h-1 rounded-full bg-border" />
-              <span>Full Stack · End to End</span>
+              {[
+                "4 Production Systems Built",
+                "2 Live Mobile Apps",
+                "₹20L+ Platform Value Delivered",
+                "Full Stack · End to End",
+              ].map((stat, i) => (
+                <span key={i} className="flex items-center gap-3">
+                  {i > 0 && (
+                    <span className="w-1 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.2)" }} />
+                  )}
+                  {stat}
+                </span>
+              ))}
             </motion.div>
           </div>
 
-          {/* Right Column - Animated Dashboard Widget */}
-          <div className="lg:col-span-5 hidden md:block relative h-[500px] perspective-1000">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              {/* Main Card */}
-              <motion.div
-                animate={{ y: [-8, 8, -8] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute z-20 w-80 p-6 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl"
-              >
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="font-mono text-sm text-muted-foreground">Bookings Today</h3>
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-primary rounded-sm" />
-                  </div>
-                </div>
-                
-                <div className="flex items-end gap-4 mb-6">
-                  <span className="font-display text-5xl font-bold text-foreground">12</span>
-                  <span className="text-secondary font-mono text-sm mb-1">+3 from yesterday</span>
-                </div>
-
-                {/* Sparkline SVG */}
-                <div className="h-16 w-full mt-4">
-                  <svg viewBox="0 0 200 40" className="w-full h-full overflow-visible">
-                    <path
-                      d="M0,30 C20,30 30,10 50,15 C70,20 80,5 100,10 C120,15 130,25 150,20 C170,15 180,0 200,5"
-                      fill="none"
-                      stroke="hsl(var(--primary))"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M0,30 C20,30 30,10 50,15 C70,20 80,5 100,10 C120,15 130,25 150,20 C170,15 180,0 200,5 L200,40 L0,40 Z"
-                      fill="url(#sparkline-gradient)"
-                      opacity="0.2"
-                    />
-                    <defs>
-                      <linearGradient id="sparkline-gradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="hsl(var(--primary))" />
-                        <stop offset="100%" stopColor="hsl(var(--background))" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </motion.div>
-
-              {/* Secondary Card */}
-              <motion.div
-                animate={{ y: [6, -6, 6] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute z-10 w-64 p-5 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 shadow-xl -right-4 bottom-20"
-              >
-                <h3 className="font-mono text-xs text-muted-foreground mb-2">Revenue</h3>
-                <div className="font-display text-2xl font-bold text-foreground">₹14,280</div>
-                <div className="mt-3 h-1 w-full bg-border rounded-full overflow-hidden">
-                  <div className="h-full bg-secondary w-[70%]" />
-                </div>
-              </motion.div>
-
-              {/* Floating Chip */}
-              <motion.div
-                animate={{ y: [-4, 4, -4] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute z-30 px-4 py-2 rounded-full backdrop-blur-md bg-[#14B8A6]/10 border border-[#14B8A6]/20 shadow-lg -left-8 top-32 flex items-center gap-2"
-              >
-                <div className="w-2 h-2 rounded-full bg-secondary" />
-                <span className="font-mono text-xs text-secondary">Payment Confirmed ✓</span>
-              </motion.div>
-            </motion.div>
+          {/* Right Column */}
+          <div className="hidden lg:block relative py-10 px-4">
+            <AdminDashboardMockup />
           </div>
         </div>
       </div>
