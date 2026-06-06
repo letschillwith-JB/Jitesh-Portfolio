@@ -26,4 +26,5 @@ export type Project = {
   order: number;
   results: string[];
   lessonsLearned: string;
+  image?: string;
 };

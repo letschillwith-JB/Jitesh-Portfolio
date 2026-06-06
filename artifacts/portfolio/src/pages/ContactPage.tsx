@@ -77,28 +77,28 @@ export function ContactPage() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="mailto:hello@example.com" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                <a href="mailto:Jiteshbabani808@gmail.com" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
                   <Mail className="text-primary" size={24} />
                   <span className="font-mono text-sm text-foreground mt-2">Email</span>
-                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">hello@example.com</span>
+                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">Jiteshbabani808@gmail.com</span>
                 </a>
                 
-                <a href="#" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-[#14B8A6]/50 transition-colors group">
+                <a href="https://wa.me/919165759300" target="_blank" rel="noreferrer" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-[#14B8A6]/50 transition-colors group">
                   <MessageCircle className="text-secondary" size={24} />
                   <span className="font-mono text-sm text-foreground mt-2">WhatsApp</span>
-                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">Chat on WhatsApp</span>
+                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">+91 91657 59300</span>
                 </a>
                 
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                <a href="https://www.linkedin.com/in/jiteshbabani/" target="_blank" rel="noreferrer" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
                   <Linkedin className="text-primary" size={24} />
                   <span className="font-mono text-sm text-foreground mt-2">LinkedIn</span>
-                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">Connect with me</span>
+                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">in/jiteshbabani</span>
                 </a>
                 
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
+                <a href="https://github.com/letschillwith-JB/" target="_blank" rel="noreferrer" className="flex flex-col gap-2 p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors group">
                   <Github className="text-primary" size={24} />
                   <span className="font-mono text-sm text-foreground mt-2">GitHub</span>
-                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">View my code</span>
+                  <span className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">letschillwith-JB</span>
                 </a>
               </div>
             </motion.div>

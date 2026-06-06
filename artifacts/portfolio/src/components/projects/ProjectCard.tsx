@@ -52,14 +52,24 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* Image Placeholder */}
+        {/* Image */}
         <Link href={`/projects/${project.slug}`} className="block h-64 lg:h-full w-full bg-muted border-l border-border relative overflow-hidden group-hover:opacity-90 transition-opacity">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-mono text-sm text-muted-foreground border border-border/50 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-md">
-              [ Screenshot · Replace with real image ]
-            </span>
-          </div>
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.name}
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-mono text-sm text-muted-foreground border border-border/50 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-md">
+                  [ Screenshot · Replace with real image ]
+                </span>
+              </div>
+            </>
+          )}
         </Link>
       </div>
     </motion.div>

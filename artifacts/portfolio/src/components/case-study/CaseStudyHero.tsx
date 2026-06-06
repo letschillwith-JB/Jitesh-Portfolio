@@ -56,12 +56,22 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         className="container mx-auto px-4 md:px-8 max-w-6xl"
       >
         <div className="w-full aspect-video md:aspect-[21/9] rounded-[20px] bg-muted border border-border relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-mono text-sm text-muted-foreground border border-border/50 bg-background/50 backdrop-blur-sm px-6 py-3 rounded-md">
-              [ Screenshot · Replace with real image ]
-            </span>
-          </div>
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.name}
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="font-mono text-sm text-muted-foreground border border-border/50 bg-background/50 backdrop-blur-sm px-6 py-3 rounded-md">
+                  [ Screenshot · Replace with real image ]
+                </span>
+              </div>
+            </>
+          )}
         </div>
       </motion.div>
     </section>
