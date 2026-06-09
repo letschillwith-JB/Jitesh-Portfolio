@@ -199,13 +199,21 @@ export function FeaturedProjects() {
                 </div>
               </div>
 
-              {/* Visual placeholder */}
+              {/* Visual */}
               <Link
                 href={`/projects/${spaceBooker.slug}`}
                 className="block h-64 lg:h-auto relative overflow-hidden"
                 style={{ borderLeft: "1px solid rgba(255,255,255,0.05)" }}
               >
-                <SpaceBookerPlaceholder />
+                {spaceBooker.image ? (
+                  <img
+                    src={spaceBooker.image}
+                    alt={spaceBooker.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                ) : (
+                  <SpaceBookerPlaceholder />
+                )}
               </Link>
             </div>
           </motion.div>

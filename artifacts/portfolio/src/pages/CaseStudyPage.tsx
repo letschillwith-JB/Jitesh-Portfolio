@@ -78,22 +78,28 @@ export function CaseStudyPage() {
           </section>
 
           {/* Gallery */}
-          <section>
-            <SectionLabel>GALLERY</SectionLabel>
-            <h2 className="font-display font-bold text-4xl mb-12 text-foreground">Interface Details</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[1, 2].map(i => (
-                <div key={i} className="aspect-video bg-muted border border-border rounded-xl relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-mono text-xs text-muted-foreground border border-border/50 bg-background/50 backdrop-blur-sm px-4 py-2 rounded-md">
-                      [ Screenshot · Replace with real image ]
-                    </span>
+          {project.gallery && project.gallery.length > 0 && (
+            <section>
+              <SectionLabel>GALLERY</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-12 text-foreground">Interface Details</h2>
+              <div className={`grid gap-6 ${project.gallery.length === 1 ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2"}`}>
+                {project.gallery.map((src, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl overflow-hidden border border-border bg-muted group cursor-zoom-in"
+                    style={{ aspectRatio: project.gallery!.length === 1 ? "16/9" : undefined }}
+                  >
+                    <img
+                      src={src}
+                      alt={`${project.name} screenshot ${i + 1}`}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      style={{ display: "block", minHeight: 220 }}
+                    />
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Demo Video */}
           <section>

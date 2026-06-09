@@ -27,4 +27,5 @@ export type Project = {
   results: string[];
   lessonsLearned: string;
   image?: string;
+  gallery?: string[];
 };
