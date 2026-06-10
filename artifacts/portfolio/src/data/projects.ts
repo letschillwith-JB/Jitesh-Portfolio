@@ -82,7 +82,7 @@ export const projects: Project[] = [
       "PayU · GST · 18% Auto-calc",
       "Credit Economy Engine",
     ],
-    status: "Delivered",
+    status: "Completed",
     featured: true,
     order: 1,
     image: "/Coworking1.png",
