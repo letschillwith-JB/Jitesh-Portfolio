@@ -38,11 +38,27 @@ export function ContactPage() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(values);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("budget", values.budget);
+      formData.append("projectType", values.projectType);
+      formData.append("message", values.message);
+
+      await fetch("https://script.google.com/macros/s/AKfycbxTYFAEEY65EH-fGTyk4vsndBhs6gpW658yVqd9t_YO5wk14finebC0FB4bn7HBXqOy/exec", {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      form.reset();
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Form submission error", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -170,7 +186,7 @@ export function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Budget Range</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
                             <FormControl>
                               <SelectTrigger className="bg-background border-border focus:ring-primary h-12">
                                 <SelectValue placeholder="Select a range" />
@@ -193,7 +209,7 @@ export function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Project Type</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
                             <FormControl>
                               <SelectTrigger className="bg-background border-border focus:ring-primary h-12">
                                 <SelectValue placeholder="Select type" />

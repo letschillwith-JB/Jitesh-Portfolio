@@ -209,7 +209,7 @@ export function FeaturedProjects() {
                   <img
                     src={spaceBooker.image}
                     alt={spaceBooker.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="absolute inset-0 w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 ) : (
                   <SpaceBookerPlaceholder />

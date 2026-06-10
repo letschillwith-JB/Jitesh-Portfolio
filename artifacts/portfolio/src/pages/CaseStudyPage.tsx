@@ -55,7 +55,7 @@ function GalleryCarousel({ images, projectName }: { images: string[]; projectNam
             <img
               src={src}
               alt={`${projectName} screenshot ${i + 1}`}
-              className="w-full object-cover object-top rounded-2xl"
+              className="w-full object-contain object-center rounded-2xl"
               style={{ maxHeight: 600, minHeight: 280, display: "block" }}
               draggable={false}
             />

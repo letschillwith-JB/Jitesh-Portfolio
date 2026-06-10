@@ -58,7 +58,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <img
               src={project.image}
               alt={project.name}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-contain object-center"
             />
           ) : (
             <>

@@ -55,12 +55,12 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         className="container mx-auto px-4 md:px-8 max-w-6xl"
       >
-        <div className="w-full aspect-video md:aspect-[21/9] rounded-[20px] bg-muted border border-border relative overflow-hidden group">
+        <div className={`w-full rounded-[20px] bg-muted border border-border relative overflow-hidden group ${!project.image ? 'aspect-video md:aspect-[21/9]' : ''}`}>
           {project.image ? (
             <img
               src={project.image}
               alt={project.name}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="w-full h-auto block"
             />
           ) : (
             <>

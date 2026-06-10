@@ -86,7 +86,7 @@ export const projects: Project[] = [
     featured: true,
     order: 1,
     image: "/Coworking1.png",
-    gallery: ["/Coworking3.png"],
+    gallery: ["/Coworking3.png" , "/Coworking2.png", "/Coworking1.png"],
     results: [
       "Delivered end-to-end as a solo developer",
       "Four workspaces in a pnpm monorepo",
